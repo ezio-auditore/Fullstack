@@ -3,6 +3,8 @@
  */
 var express = require('express');
 var app = express();
+var http =require('http').Server(app);
+var io =require('socket.io')(http);
 var path = require('path');
 var config = require('.//server/config');
 var port = process.env.PORT || 3000;
@@ -16,16 +18,21 @@ app.set('views',path.resolve(__dirname,'client','views'));
 
 app.use(express.static(path.resolve(__dirname,'client')));
 app.use(bodyParser.json());
-app.use(morgan());
-
-app.get('/',function(req,res){
+/*app.use(morgan());*/
+io.on('connection',function(socket){
+    console.log('User has connected');
+    socket.on('disconnect',function(){
+        console.log("user has disconnected");
+    })
+})
+app.get('/*',function(req,res){
     res.render('index.ejs');
 });
 var api = express.Router();
 require('./server/routes/api')(api);
 app.use('/api',api)
 
-app.listen(port,function(err){
+http.listen(port,function(err){
     if(err)
         console.log(err);
     console.log('Listening on port 3000');

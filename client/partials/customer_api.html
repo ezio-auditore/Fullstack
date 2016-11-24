@@ -30,7 +30,9 @@
                 <input type="text" class="form-control" id="pin" ng-model="form.address.pin">
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-success" ng-click="addDatabase()">Add Customer</button>
+              <div class="col-md-6"><button type="submit" class="btn btn-success" ng-click="addDatabase()">Add Customer</button></div>
+              <!--<div class="col-md-6"><button type="submit" class="btn btn-danger" ng-click="reset()">Reset</button></div>-->
+
             </div>
             <br>
         </form>
@@ -42,7 +44,7 @@
             <th>Phone</th>
             <th>Address</th>
             </thead>
-            <tr ng-repeat="customer in customers">
+            <tr ng-repeat="customer in customers | startForm:(currentPage-1) * maxSize | limitTo :maxSize">
                 <td>{{customer.firstName}}&nbsp;{{customer.lastName}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.address.street}}<br>
@@ -51,8 +53,9 @@
                 </td>
                 <td><i class="fa fa-trash" ng-click="delete($index)"></i></td>
             </tr>
+            
         </table>
+        <ul uib-pagination total-items="customers.length" ng-model="currentPage" items-per-page="maxSize"></ul>
     </div>
 
 </div>
-

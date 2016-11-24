@@ -1,0 +1,9 @@
+tr.ng-enter{
+    animation : lightSpeedIn 1s;
+}
+tr.ng-leave{
+    animation : zoomOutDown 1s;
+}
+
+
+    

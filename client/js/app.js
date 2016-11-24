@@ -2,7 +2,7 @@
  * Created by tonyStark on 11/22/2016.
  */
 
-var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource'])
+var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource','ngAnimate','btford.socket-io'])
 
     .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
         $routeProvider.when('/home',
@@ -23,7 +23,17 @@ var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource'])
             templateUrl: '/partials/customer_api.html',
             controller : 'customerApiController'
         });
+         $routeProvider.when('/chatService',{
+            templateUrl: '/partials/chat_service.html',
+            controller : 'customerApiController'
+        });
 
         $routeProvider.otherwise({redirectTo :"/"});
         $locationProvider.html5Mode({enabled : true , requireBase : false});
-    }]);
+    }])
+    
+    .filter('startForm',function(){
+        return function(data,start){
+            return data.slice(start);
+        }
+    })
