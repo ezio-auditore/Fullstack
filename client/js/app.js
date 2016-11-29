@@ -25,7 +25,7 @@ var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource','ngAni
         });
          $routeProvider.when('/chatService',{
             templateUrl: '/partials/chat_service.html',
-            controller : 'customerApiController'
+            controller : 'chatController'
         });
 
         $routeProvider.otherwise({redirectTo :"/"});
