@@ -1,4 +1,4 @@
-myApp.controller('chatController',['$scope','Socket',function($scope,Socket){
+myApp.controller('chatController',['$scope',function($scope){
     Socket.connect();
     console.log("User Connected");
     

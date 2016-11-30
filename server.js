@@ -11,6 +11,8 @@ var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var messages = [];
+var sockets = [];
 
 app.set('view engine','ejs');
 app.set('views',path.resolve(__dirname,'client','views'));
@@ -21,18 +23,21 @@ app.use(bodyParser.json());
 /*app.use(morgan());*/
 io.on('connection',function(socket){
     console.log('User has connected');
+    messages.forEach(function(data){
+        socket.emit('messages',data);
+    });
     socket.on('disconnect',function(){
         console.log("user has disconnected");
     })
 })
-app.get('/*',function(req,res){
+app.get('/',function(req,res){
     res.render('index.ejs');
 });
 var api = express.Router();
 require('./server/routes/api')(api);
 app.use('/api',api)
 
-http.listen(port,function(err){
+app.listen(port,function(err){
     if(err)
         console.log(err);
     console.log('Listening on port 3000');

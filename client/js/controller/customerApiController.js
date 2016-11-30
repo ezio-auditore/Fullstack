@@ -8,12 +8,12 @@ myApp.controller('customerApiController',['$scope','Api',function($scope,Api){
     $scope.currentPage = 1;
     $scope.addDatabase = function(){
         Api.Customer.save({},$scope.form,function(data){
-            $scope.customers.push(data);
+            $scope.customers.unshift(data);
         });
 
     }
     Api.Customer.query({},function(data){
-        $scope.customers=data;
+        $scope.customers=data.reverse();
     });
 
     $scope.delete = function(index){

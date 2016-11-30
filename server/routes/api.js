@@ -44,6 +44,9 @@ module.exports = function(router){
     });
     router.post('/customers/:id',function(req,res){
         Customer.findOne({_id:req.params.id},function(err,data){
+            if(err){
+                res.json(err);
+            }
             var  customer = data;
             customer.firstName = req.body.firstName;
             customer.lastName = req.body.lastName;

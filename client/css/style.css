@@ -1,8 +1,8 @@
 tr.ng-enter{
-    animation : lightSpeedIn 1s;
+    animation : pulse 1s;
 }
 tr.ng-leave{
-    animation : zoomOutDown 1s;
+    animation : bounceOut 1s;
 }
 
 
