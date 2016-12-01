@@ -51,4 +51,28 @@ router.post('/register',function(req,res){
     }
     
 });
+router.post('/login',function(req,res){
+    var username = req.body.username;
+    var password= req.body.password;
+    var password2= req.body.password2;
+     req.checkBody('username','User Name is required').notEmpty();
+    req.checkBody('password','Password is required').notEmpty();
+    req.checkBody('password2','Passwords donot match ').equals(req.body.password);
+    var errors = req.validationErrors();
+    if(errors){
+        console.log("Error in register");
+        res.render('partials/login',{
+            errors:errors
+        })
+    }
+    else{
+        console.log("Passed");
+        var newUser = new User({
+            username: username,
+            password:password
+        });
+
+    }
+});
+
 }
