@@ -19,6 +19,8 @@
     <link href="css/style.css" rel="stylesheet">
      <link href="css/demo.css" rel="stylesheet">
      <link href="css/material-kit.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
     <!--FOnt Awesome-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -54,6 +56,8 @@
                     <li ng-class="{active : isActive('/about')}"><a href="#/about">About</a></li>
                     <li ng-class="{active : isActive('/contact')}"><a href="#/contact">Contact</a></li>
                     <li ng-class="{active : isActive('/projects')}"><a href="#/projects">Projects</a></li>
+                    <li ng-class="{active : isActive('/projects')}"><a href="/auth/login">Login</a></li>
+                    <li ng-class="{active : isActive('/projects')}"><a href="/auth/register">Register</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -61,8 +65,18 @@
 
     <!-- Main component for a primary marketing message or call to action -->
 <div class="container">
-    <div ui-view></div>
+    {{#if success_msg}}
+            <div class="alert alert-success">{{success_msg}}</div>
+          {{/if}}
 
+          {{#if error_msg}}
+            <div class="alert alert-danger">{{error_msg}}</div>
+          {{/if}}
+
+          {{#if error}}
+            <div class="alert alert-danger">{{error}}</div>
+{{/if}}
+    {{{body}}}
 </div>
 
  <!-- /container -->
@@ -74,6 +88,7 @@
 <!--Bower Scripts-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+
 <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="libs/angular/angular.js"></script>
 <script type="text/javascript" src="libs/angular-route/angular-route.js"></script>

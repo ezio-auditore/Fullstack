@@ -16,14 +16,21 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
+/*var handelbars = require('handlebars');*/
+var exphbs = require('express-handlebars');
 
-
-app.set('view engine','ejs');
-app.set('views',path.resolve(__dirname,'client','views'));
-
-
+app.set('views',path.resolve(__dirname,'views'));
 app.use(express.static(path.resolve(__dirname,'client')));
+app.engine('hbs', exphbs({defaultLayout: 'main',extname:'.hbs'}));
+app.set('view engine', 'hbs');
+/*app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.set('view engine', 'handlebars');*/
+app.get('/',function(req,res){
+    res.render('index');
+});
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({
     secret : 'adadnald65a4d68ad',
@@ -67,28 +74,29 @@ app.use(function(req,res,next){
  console.log("user has disconnected");
  })
  })*/
-app.get('/',function(req,res){
-    res.render('index.ejs');
-});
+
 var api = express.Router();
 require('./server/routes/api')(api);
 app.use('/api',api);
 
+
+
+var loginApi = express.Router();
+require('./server/routes/authentication.js')(loginApi);
+app.use('/auth',loginApi);
+
+
+/*var loginDbConnection = mongoose.createConnection(config.loginUrl,function(err){
+    if(err){
+        console.log('error connecting to login db');
+    }
+    console.log('connected to Login Users db');
+});
+*/
 
 app.listen(port,function(err){
     if(err)
         console.log(err);
     console.log('Listening on port 3000');
 });
-/*require('./server/routes/authentication.js')(api);
-app.use('/authorized')(api);*/
-/*var loginDbConnection = mongoose.createConnection(config.loginUrl,function(err){
-    if(err){
-        console.log('error connecting to login db');
-    }
-    console.log('connected to Login Users db');
-});*/
-
-
-
 
