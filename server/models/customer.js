@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var config =require('..//config.js');
 var Schema = mongoose.Schema;
 var customer = new Schema({
     firstName : String,
@@ -11,5 +12,11 @@ var customer = new Schema({
         pin:String
     }
 });
+var customerDbConnection= mongoose.createConnection(config.customerUrl,function(err){
+    if(err){
+        console.log('error connecting to login db');
+    }
+    console.log('connected to Customers Users db');
+});
 
-module.exports = mongoose.model('Customer',customer);
+module.exports = customerDbConnection.model('Customer',customer);
