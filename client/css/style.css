@@ -1,9 +1,13 @@
 tr.ng-enter{
-    animation : pulse 1s;
+    animation : pulse 0.75s;
+    
 }
 tr.ng-leave{
-    animation : bounceOut 1s;
+    transition-delay: 1.5s;
+    animation : bounceOut 0.75s;
+}
+body {
+  padding-top: 150px;
 }
 
-
-    
+ 

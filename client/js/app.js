@@ -44,7 +44,7 @@ var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource','ngAni
         .state('chat', {
             url: '/chat',
             templateUrl: '/partials/chat_service.html',
-            controller : 'chatApiController'
+            controller : 'chatController'
         })
         .state('about', {
             url: '/about',
@@ -74,3 +74,6 @@ var myApp = angular.module('myApp',['ngRoute','ui.bootstrap','ngResource','ngAni
             return data.slice(start);
         }
     })
+    .factory('socket', function (socketFactory) {
+  return socketFactory();
+})

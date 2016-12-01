@@ -1,9 +1,30 @@
-myApp.controller('chatController',['$scope',function($scope){
-    Socket.connect();
-    console.log("User Connected");
+myApp.controller('chatController',['$scope','socket',function($scope,socket){
+     $scope.messages = [];
+        $scope.roster = [];
+        $scope.name = '';
+        $scope.text = '';
     
-    $scope.$on('$locationChangeStart',function(event){
-        Socket.disconnect();
-        console.log("User disconnected");
-    })
+        socket.on('connect', function () {
+          $scope.setName();
+        });
+
+        socket.on('message', function (msg) {
+          $scope.messages.push(msg);
+          $scope.$apply();
+        });
+
+        socket.on('roster', function (names) {
+          $scope.roster = names;
+          $scope.$apply();
+        });
+
+        $scope.send = function send() {
+          console.log('Sending message:', $scope.text);
+          socket.emit('message', $scope.text);
+          $scope.text = '';
+        };
+
+        $scope.setName = function setName() {
+          socket.emit('identify', $scope.name);
+        };
 }])

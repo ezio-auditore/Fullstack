@@ -15,7 +15,10 @@
     <!-- Bootstrap core CSS -->
     <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="libs/animate.css/animate.css" rel="stylesheet">
+     
     <link href="css/style.css" rel="stylesheet">
+     <link href="css/demo.css" rel="stylesheet">
+     <link href="css/material-kit.css" rel="stylesheet">
     <!--FOnt Awesome-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -31,10 +34,10 @@
 
 <body ng-app="myApp">
 
-<div class="container">
+
 
     <!-- Static navbar -->
-    <nav class="navbar navbar-default" ng-controller="navController">
+    <nav class="navbar navbar-fixed-top" ng-controller="navController">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -43,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Stark Chat</a>
+                <a class="navbar-brand" href="#/">Stark App</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -62,7 +65,7 @@
 
 </div>
 
-</div> <!-- /container -->
+ <!-- /container -->
 
 
 <!-- Bootstrap core JavaScript
@@ -80,6 +83,10 @@
 <script type="text/javascript" src="libs/angular-animate/angular-animate.js"></script>
 <script type="text/javascript" src="libs/angular-socket-io/socket.js"></script>
 <script type="text/javascript" src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript" src="js/ui/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/ui/material-kit.js"></script>
+<script type="text/javascript" src="js/ui/material.min.js"></script>
+<script type="text/javascript" src="js/ui/nouislider.min.js"></script>
 <!--socket io-->
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 
